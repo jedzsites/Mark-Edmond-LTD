@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mark Edmond Ltd - Expert Building Services</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Define a consistent palette for darker theme */
+        :root {
+            --color-black: #1a1a1a; /* Pure black */
+            --color-dark-grey: #1f1f1f; /* Very dark grey for alternating sections */
+            --color-medium-grey: #4a4a4a; /* Medium grey for contact box, etc. */
+            --color-light-grey: #d4d4d4; /* Light grey for subtle text/borders */
+            --color-white: #ffffff; /* Pure white for high contrast elements */
+            --color-text-dark-on-light: #333333; /* Dark text on light backgrounds */
+            --color-text-light-on-dark: #f0f0f0; /* Light text on dark backgrounds */
+            --color-accent: #666666; /* A desaturated grey for accents */
+            --color-button-hover: #000000; /* Pure black on button hover */
+            --color-border-dark: #333333; /* Dark border color for separation */
+        }
+
+        /* Base styles with new fonts and colors */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--color-dark-grey); /* Overall very dark grey background */
+            color: var(--color-text-light-on-dark); /* Default text color on dark backgrounds */
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--color-text-light-on-dark); /* Headings are light on dark */
+        }
+
+        /* Header/Navigation */
+        .header-bg {
+            background-color: var(--color-black); /* Pure black header */
+            border-bottom: 1px solid var(--color-border-dark);
+            width: 100%; /* Ensure it spans full width */
+            position: relative; /* Needed for z-index context */
+            z-index: 50; /* Ensure header is above other content */
+        }
+        .nav-link {
+            color: var(--color-medium-text);
+            font-weight: 500;
+            padding: 0.5rem 0.4rem; /* Even more reduced padding for mobile */
+            border-radius: 0.5rem;
+            transition: color 0.3s ease, background-color 0.3s ease;
+            display: inline-block;
+            font-size: 0.8rem; /* Even smaller font for mobile nav */
+            white-space: nowrap; /* Prevent text wrapping */
+        }
+        @media (min-width: 480px) { /* Extra small breakpoint for better control */
+            .nav-link {
+                font-size: 0.75rem;
+                padding: 0.5rem 0.5rem;
+            }
+        }
+        @media (min-width: 640px) { /* sm */
+            .nav-link {
+                padding: 0.75rem 0.6rem; /* Slightly more padding for small tablets/larger phones */
+                font-size: 0.9rem;
+            }
+        }
+        @media (min-width: 768px) { /* md */
+            .nav-link {
+                padding: 0.75rem 1.1rem; /* Restore desktop padding */
+                font-size: 1rem; /* Restore desktop font size */
+            }
+        }
+        .nav-link:hover {
+            color: var(--color-white);
+            background-color: var(--color-dark-grey);
+        }
+
+        /* Buttons */
+        .btn-primary {
+            background-color: var(--color-accent);
+            color: var(--color-white);
+            padding: 0.7rem 1.8rem; /* Smaller padding for mobile buttons */
+            font-weight: 600;
+            border-radius: 0.75rem;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-size: 0.95rem; /* Smaller font for mobile buttons */
+            position: relative; /* Needed for z-index */
+            z-index: 10; /* Ensure button is clickable */
+        }
+        @media (min-width: 768px) { /* md */
+            .btn-primary {
+                padding: 0.9rem 2.2rem; /* Restore padding */
+                font-size: 1rem; /* Restore font size */
+            }
+        }
+        .btn-primary:hover {
+            background-color: var(--color-button-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Section Backgrounds */
+        .section-primary-bg { /* Used for About Us, Gallery, Contact Us */
+            background-color: var(--color-black);
+            color: var(--color-text-light-on-dark);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            border-radius: 0.75rem;
+            padding: 2.5rem 1.5rem; /* Mobile padding */
+        }
+        .section-secondary-bg { /* Used for Services, Experience */
+            background-color: var(--color-dark-grey);
+            color: var(--color-text-light-on-dark);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            border-radius: 0.75rem;
+            padding: 2.5rem 1.5rem; /* Mobile padding */
+        }
+        @media (min-width: 768px) { /* md */
+            .section-primary-bg, .section-secondary-bg {
+                padding: 5rem 1.5rem; /* Desktop padding */
+            }
+        }
+        .text-accent-color {
+            color: var(--color-accent);
+        }
+
+        /* Hero Section Specifics */
+        .hero-title {
+            font-size: 2.5rem; /* Smaller for mobile */
+            line-height: 1.2;
+            font-weight: 800;
+            color: var(--color-white);
+        }
+        @media (min-width: 640px) { /* sm */
+            .hero-title {
+                font-size: 3rem;
+            }
+        }
+        @media (min-width: 768px) { /* md */
+            .hero-title {
+                font-size: 4rem;
+            }
+        }
+        @media (min-width: 1024px) { /* lg */
+            .hero-title {
+                font-size: 5.5rem;
+            }
+        }
+
+        .hero-subtitle {
+            font-size: 1rem; /* Smaller for mobile */
+            font-weight: 400;
+            line-height: 1.5;
+            color: var(--color-light-text);
+        }
+        @media (min-width: 640px) { /* sm */
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+        }
+        @media (min-width: 768px) { /* md */
+            .hero-subtitle {
+                font-size: 1.6rem;
+            }
+        }
+        .hero-section { /* Added this class to the section tag */
+            height: 60vh; /* Shorter for mobile */
+        }
+        @media (min-width: 768px) { /* md */
+            .hero-section {
+                height: 75vh; /* Restore original height for larger screens */
+            }
+        }
+
+        /* Overriding Tailwind greys to fit new palette where necessary */
+        .text-gray-700 { color: var(--color-text-light-on-dark); }
+        .text-gray-800 { color: var(--color-text-light-on-dark); }
+        .text-gray-600 { color: var(--color-medium-text); }
+        .bg-gray-800 { background-color: var(--color-medium-grey); }
+        .bg-gray-700 { background-color: var(--color-white); }
+        .border-gray-600 { border-color: var(--color-accent); }
+        .text-gray-300 { color: var(--color-text-dark-on-light); }
+        .text-dark-text { color: var(--color-text-dark-on-light); }
+
+
+        /* Custom styles for service cards */
+        .service-card {
+            background-color: var(--color-black);
+            padding: 1.5rem; /* Even smaller padding for very small screens */
+            border-radius: 0.8rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 100%;
+            border: 1px solid var(--color-border-dark);
+        }
+        @media (min-width: 640px) { /* sm */
+            .service-card {
+                padding: 1.8rem;
+            }
+        }
+        @media (min-width: 768px) { /* md */
+            .service-card {
+                padding: 2.2rem;
+            }
+        }
+        .service-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+        }
+        .service-icon {
+            width: 3rem; /* Smaller icon for mobile */
+            height: 3rem;
+            color: var(--color-accent);
+            margin-bottom: 0.8rem;
+        }
+        @media (min-width: 768px) { /* md */
+            .service-icon {
+                width: 4.2rem;
+                height: 4.2rem;
+                margin-bottom: 1.2rem;
+            }
+        }
+        .service-title {
+            font-size: 1.4rem; /* Smaller title for mobile */
+            font-weight: 700;
+            margin-bottom: 0.4rem;
+            color: var(--color-text-light-on-dark);
+        }
+        @media (min-width: 768px) { /* md */
+            .service-title {
+                font-size: 1.85rem;
+                margin-bottom: 0.6rem;
+            }
+        }
+        .service-description {
+            font-size: 0.8rem; /* Even smaller description for mobile */
+            line-height: 1.5;
+            color: var(--color-medium-text);
+        }
+        @media (min-width: 768px) { /* md */
+            .service-description {
+                font-size: 0.95rem;
+            }
+        }
+
+        /* Experience section card specific styles */
+        .experience-card {
+            background-color: var(--color-black);
+            padding: 1.8rem; /* Smaller padding for mobile */
+            border-radius: 0.8rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            border-top: 4px solid var(--color-accent);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 100%;
+        }
+        @media (min-width: 768px) { /* md */
+            .experience-card {
+                padding: 2.2rem;
+            }
+        }
+        .experience-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+        }
+        .experience-card h3 {
+            color: var(--color-text-light-on-dark);
+            font-size: 1.4rem; /* Smaller title for mobile */
+            font-weight: 600;
+            margin-bottom: 0.4rem;
+        }
+        @media (min-width: 768px) { /* md */
+            .experience-card h3 {
+                font-size: 1.6rem;
+                margin-bottom: 0.6rem;
+            }
+        }
+        .experience-card p {
+            color: var(--color-medium-text);
+            font-size: 0.8rem; /* Smaller text for mobile */
+            line-height: 1.4;
+        }
+        @media (min-width: 768px) { /* md */
+            .experience-card p {
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Gallery specific styles */
+        .gallery-image {
+            width: 100%;
+            height: 150px; /* Even smaller height for mobile gallery consistency */
+            object-fit: cover;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid var(--color-border-dark);
+        }
+        @media (min-width: 640px) { /* sm breakpoint */
+            .gallery-image {
+                height: 180px;
+            }
+        }
+        @media (min-width: 768px) { /* md breakpoint */
+            .gallery-image {
+                height: 200px;
+            }
+        }
+        @media (min-width: 1024px) { /* lg breakpoint */
+            .gallery-image {
+                height: 240px;
+            }
+        }
+
+        .gallery-image:hover {
+            transform: scale(1.02);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+            cursor: pointer; /* Indicate clickable */
+        }
+
+        /* Modal specific styles for single image enlargement */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        .modal-content {
+            background-color: var(--color-secondary-bg);
+            padding: 1.5rem; /* Smaller padding for mobile modal */
+            border-radius: 1rem;
+            max-width: 95%; /* More width for mobile modal */
+            max-height: 95%; /* More height for mobile modal */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+            overflow-y: auto;
+        }
+        @media (min-width: 768px) { /* md */
+            .modal-content {
+                padding: 2.5rem; /* Restore desktop padding */
+                max-width: 90%;
+                max-height: 90%;
+            }
+        }
+
+        .modal-enlarged-image {
+            max-width: 100%;
+            max-height: 60vh; /* Adjusted for mobile */
+            object-fit: contain;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+            margin-bottom: 0.8rem; /* Adjusted margin */
+        }
+        @media (min-width: 768px) { /* md */
+            .modal-enlarged-image {
+                max-height: 70vh;
+                margin-bottom: 1rem;
+            }
+        }
+        .modal-image-description {
+            color: var(--color-medium-text);
+            font-size: 0.9rem; /* Smaller for mobile */
+            text-align: center;
+        }
+        @media (min-width: 768px) { /* md */
+            .modal-image-description {
+                font-size: 1rem;
+            }
+        }
+        .modal-close-btn {
+            position: absolute;
+            top: 0.5rem; /* Adjusted for mobile */
+            right: 0.5rem; /* Adjusted for mobile */
+            background: none;
+            border: none;
+            font-size: 1.8rem; /* Smaller for mobile */
+            color: var(--color-medium-text);
+            cursor: pointer;
+            padding: 0.3rem; /* Smaller padding */
+            border-radius: 50%;
+            transition: background-color 0.2s ease, color 0.2s ease;
+        }
+        @media (min-width: 768px) { /* md */
+            .modal-close-btn {
+                top: 0.8rem;
+                right: 0.8rem;
+                font-size: 2.2rem;
+                padding: 0.4rem;
+            }
+        }
+        .modal-content h3 {
+            color: var(--color-text-light-on-dark);
+            font-size: 1.6rem; /* Smaller for mobile */
+            margin-bottom: 0.8rem;
+        }
+        @media (min-width: 768px) { /* md */
+            .modal-content h3 {
+                font-size: 2rem;
+                margin-bottom: 1rem;
+            }
+        }
+
+        /* Footer specific styles */
+        .footer-bg {
+            background-color: var(--color-black);
+            color: var(--color-medium-text);
+            padding: 1.5rem; /* Smaller padding for mobile footer */
+        }
+        @media (min-width: 768px) { /* md */
+            .footer-bg {
+                padding: 2.5rem; /* Restore desktop padding */
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header/Navigation -->
+    <header class="header-bg shadow-sm rounded-b-lg">
+        <nav class="container mx-auto px-2 py-0.5 flex items-center justify-between sm:px-4 md:px-8">
+            <!-- Logo/Business Name -->
+            <div class="font-bold rounded-lg flex items-center">
+                <img src="https://raw.githubusercontent.com/jedzsites/Mark-Edmond-LTD/main/mark_edmond_resized_600.png"
+                     alt="Mark Edmond Ltd Logo" class="h-32 w-auto rounded-lg md:h-40"
+                     onerror="this.onerror=null;this.src='https://placehold.co/200x80/1a1a1a/ffffff?text=MARK+EDMOND+LTD+LOGO';">
+            </div>
+            <!-- Navigation Links -->
+            <ul class="flex items-center space-x-0 sm:space-x-1 md:space-x-5">
+                <li><a href="#about" class="nav-link">About Us</a></li>
+                <li><a href="#services" class="nav-link">Services</a></li>
+                <li><a href="#gallery" class="nav-link">Gallery</a></li>
+                <li><a href="#experience" class="nav-link">Experience</a></li>
+                <li><a href="#contact" class="nav-link">Contact Us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative hero-section flex items-center justify-center text-center overflow-hidden bg-cover bg-center"
+        style="background-image: url('https://placehold.co/1920x850/212121/bbbbbb?text=Expert+Craftsmanship');">
+        <div class="absolute inset-0 bg-black bg-opacity-70"></div>
+        <div class="relative z-10 text-white p-6 md:p-8 rounded-lg max-w-4xl">
+            <h1 class="hero-title mb-4 md:mb-6 drop-shadow-md">
+                Mark Edmond Ltd
+            </h1>
+            <p class="hero-subtitle mb-8 md:mb-10 drop-shadow-sm">
+                Your Premier Partner for Exceptional Building Solutions in Gloucestershire.
+            </p>
+            <a href="#contact" class="inline-block btn-primary">
+                Get a Free Quote
+            </a>
+        </div>
+    </section>
+
+    <!-- About Us / Description Section -->
+    <section id="about" class="container mx-auto px-4 py-12 md:py-20 text-center section-primary-bg rounded-lg my-8 md:my-12 shadow-sm">
+        <h2 class="text-3xl md:text-4xl font-bold mb-8 md:mb-10">About Mark Edmond Ltd</h2>
+        <div class="max-w-4xl mx-auto text-base md:text-lg leading-relaxed text-light-text">
+            <p class="mb-4 md:mb-5">
+                Welcome to Mark Edmond Ltd, where quality craftsmanship meets unparalleled dedication. With a proud history rooted in general building, we have honed our expertise over decades, becoming a leading name in bespoke window installations and stunning kitchen renovations.
+            </p>
+            <p class="mb-4 md:mb-5">
+                We are proudly based in the <span class="font-semibold text-accent-color">Gloucestershire area</span>, serving our local community and surrounding regions with reliable, high-quality building services. Our passion lies in creating beautiful, functional spaces that enhance your lifestyle and home value.
+            </p>
+            <p class="mb-4 md:mb-5">
+                Our commitment is to transform your vision into reality, delivering projects that not only meet but exceed expectations. We pride ourselves on meticulous attention to detail, efficient project management, and a personalized approach that puts your needs first.
+            </p>
+            <p class="text-sm md:text-base text-gray-600 italic">
+                [**Type your custom description here. You can elaborate on your company's values, mission, specific strengths, or any other details you wish to highlight for your clients.**]
+            </p>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="section-secondary-bg py-12 md:py-20">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-10 md:mb-14">Our Specialized Services</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 justify-items-center">
+                <!-- Windows Service -->
+                <div class="service-card">
+                    <svg class="service-icon" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 11.55l8-5.33V19H4V6.22l8 5.33zM12 4L2 8v12h20V8L12 4zm0 13c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/>
+                    </svg>
+                    <h3 class="service-title">Expert Window Installations</h3>
+                    <p class="service-description">
+                        From classic sash windows to modern panoramic glazing, we provide high-quality window installation and replacement services. Enhance your home's aesthetics, energy efficiency, and security with our tailored solutions.
+                    </p>
+                </div>
+                <div class="service-card">
+                    <svg class="service-icon" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
+                    </svg>
+                    <h3 class="service-title">Dream Kitchen Renovations</h3>
+                    <p class="service-description">
+                        Transform your kitchen into the heart of your home. We manage every aspect of your kitchen renovation, from initial design and cabinetry fitting to plumbing, electrical, and flooring, ensuring a seamless and stunning finish.
+                    </p>
+                </div>
+                <div class="service-card">
+                    <svg class="service-icon" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                    </svg>
+                    <h3 class="service-title">Secure Door Installations</h3>
+                    <p class="service-description">
+                        From robust entrance doors to elegant interior doors, we offer professional installation and replacement services. Enhance your property's security, energy efficiency, and aesthetic appeal.
+                    </p>
+                </div>
+                <div class="service-card">
+                    <svg class="service-icon" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M5 2c-1.66 0-3 1.34-3 3v14c0 1.66 1.34 3 3 3h14c1.1 0 2-.9 2-2V5c0-1.66-1.34-3-3-3H5zm0 2h14c.55 0 1 .45 1 1v14c0 .55-.45 1-1 1H5c-.55 0-1-.45-1-1V5c0-.55.45-1 1-1zM7 9v11h10V9H7zM12 6c-1.66 0-3 1.34-3 3h6c0-1.66-1.34-3-3-3z"/>
+                    </svg>
+                    <h3 class="service-title">Bathroom Renovations</h3>
+                    <p class="service-description">
+                        Create your ideal bathroom sanctuary. We handle everything from tiling and plumbing to shower and fixture installations, delivering a relaxing and functional space.
+                    </p>
+                </div>
+                <div class="service-card lg:col-span-2">
+                    <svg class="service-icon" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 4c-4.41 0-8 3.59-8 8s3.59 8 8 8 8-3.59 8-8-3.59-8-8-8zm-1 5h2v2h2v2h-2v2h-2v-2H9v-2h2V9z"/>
+                    </svg>
+                    <h3 class="service-title">Comprehensive Property Maintenance</h3>
+                    <p class="service-description">
+                        Keep your property in prime condition with our maintenance services. From minor repairs to routine upkeep, we ensure your home or business remains safe and well-maintained.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="container mx-auto px-4 py-12 md:py-20 text-center section-primary-bg rounded-lg my-8 md:my-12 shadow-sm">
+        <h2 class="text-3xl md:text-4xl font-bold mb-10 md:mb-14">Our Project Gallery</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6 md:gap-8">
+            <!-- Displaying initial 6 photos -->
+            <div class="relative group gallery-item">
+                <img src="https://raw.githubusercontent.com/jedzsites/Mark-Edmond-LTD/main/IMG_3683.jpeg" alt="Finished Bathroom Renovation" class="gallery-image">
+                <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg">
+                    <p class="text-white text-lg font-semibold">Bathroom Renovation</p>
+                </div>
+            </div>
+            <div class="relative group gallery-item">
+                <img src="https://raw.githubusercontent.com/jedzsites/Mark-Edmond-LTD/main/IMG_3685.jpeg" alt="Before Kitchen/Floor Renovation" class="gallery-image">
+                <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg">
+                    <p class="text-white text-lg font-semibold">Floor Installation</p>
+                </div>
+            </div>
+            <div class="relative group gallery-item">
+                <img src="https://raw.githubusercontent.com/jedzsites/Mark-Edmond-LTD/main/IMG_3684.jpeg" alt="Bathroom Renovation Progress" class="gallery-image">
+                <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg">
+                    <p class="text-white text-lg font-semibold">Bathroom Shower Area</p>
+                </div>
+            </div>
+            <div class="relative group gallery-item">
+                <img src="https://raw.githubusercontent.com/jedzsites/Mark-Edmond-LTD/main/IMG_3691.jpeg" alt="Bathroom Corner Bath" class="gallery-image">
+                <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg">
+                    <p class="text-white text-lg font-semibold">Bathroom Remodel</p>
+                </div>
+                </div>
+            <div class="relative group gallery-item">
+                <img src="https://raw.githubusercontent.com/jedzsites/Mark-Edmond-LTD/main/IMG_3686.jpeg" alt="Modern Bathroom Shower" class="gallery-image">
+                <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg">
+                    <p class="text-white text-lg font-semibold">Shower Installation</p>
+                </div>
+            </div>
+            <div class="relative group gallery-item">
+                <img src="https://raw.githubusercontent.com/jedzsites/Mark-Edmond-LTD/main/IMG_3687.jpeg" alt="Modern Kitchen Renovation" class="gallery-image">
+                <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg">
+                    <p class="text-white text-lg font-semibold">Kitchen Remodel</p>
+                </div>
+            </div>
+        </div>
+        <button id="viewAllGalleryBtn" class="mt-10 md:mt-12 inline-block btn-primary">
+            See More Projects
+        </button>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="container mx-auto px-4 py-12 md:py-20 text-center section-secondary-bg rounded-lg my-8 md:my-12 shadow-sm">
+        <h2 class="text-3xl md:text-4xl font-bold mb-8 md:mb-10">40 Years of Unrivaled Expertise</h2>
+        <div class="max-w-4xl mx-auto text-base md:text-lg leading-relaxed">
+            <p class="mb-6 md:mb-8">
+                With four decades in the building trade, Mark Edmond Ltd stands as a testament to enduring quality and unwavering dedication. Our long-standing presence in the industry is built on a foundation of countless successful projects and satisfied clients.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 text-left">
+                <div class="experience-card">
+                    <h3>Proven Track Record</h3>
+                    <p>
+                        Our extensive portfolio showcases a diverse range of projects, from intricate period restorations to cutting-edge modern constructions. We bring a wealth of practical knowledge to every job.
+                    </p>
+                </div>
+                <div class="experience-card">
+                    <h3>Master Craftsmanship</h3>
+                    <p>
+                        Our team comprises highly skilled tradespeople who uphold the highest standards of craftsmanship. We combine traditional techniques with modern innovations for superior results.
+                    </p>
+                </div>
+                 <div class="experience-card">
+                    <h3>Problem-Solving Expertise</h3>
+                    <p>
+                        Having faced and overcome numerous challenges over the years, we possess the foresight and adaptability to navigate complex projects with ease and find effective solutions.
+                    </p>
+                </div>
+                <div class="experience-card">
+                    <h3>Reliability & Trust</h3>
+                    <p>
+                        Clients trust us for our transparent processes, timely completion, and adherence to budget. Our reputation is built on consistent delivery and exceptional customer service.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Us Section -->
+    <section id="contact" class="container mx-auto px-4 py-12 md:py-20 text-center section-primary-bg rounded-lg my-8 md:my-12 shadow-sm">
+        <h2 class="text-3xl md:text-4xl font-bold mb-10 md:mb-14">Get in Touch with Mark Edmond Ltd</h2>
+        <div class="max-w-2xl mx-auto bg-gray-800 p-8 md:p-10 rounded-xl shadow-lg">
+            <p class="text-base md:text-lg text-gray-300 mb-6 md:mb-8">
+                Ready to start your next building project? Contact us today for a free quote and a no-obligation discussion. We look forward to hearing from you!
+            </p>
+            <form action="https://formspree.io/f/mgvypzpv" method="POST" class="space-y-4 md:space-y-6">
+                <div>
+                    <input type="text" id="name" name="name" placeholder="Your Name"
+                        class="w-full p-3 md:p-4 rounded-lg bg-gray-700 border border-gray-600 text-white focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-gray-500" required>
+                </div>
+                <div>
+                    <input type="email" id="email" name="_replyto" placeholder="Your Email"
+                        class="w-full p-3 md:p-4 rounded-lg bg-gray-700 border border-gray-600 text-white focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-gray-500" required>
+                </div>
+                <div>
+                    <input type="tel" id="phone" name="phone" placeholder="Your Phone (Optional)"
+                        class="w-full p-3 md:p-4 rounded-lg bg-gray-700 border border-gray-600 text-white focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-gray-500">
+                </div>
+                <div>
+                    <textarea id="message" name="message" rows="5" placeholder="Your Message or Project Details"
+                        class="w-full p-3 md:p-4 rounded-lg bg-gray-700 border border-gray-600 text-white focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-gray-500" required></textarea>
+                </div>
+                <button type="submit" class="w-full btn-primary">
+                    Send Message
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer-bg py-6 md:py-10 text-center text-medium-text text-sm">
+        <div class="container mx-auto px-4">
+            <p>&copy; 2025 Mark Edmond Ltd. All rights reserved.</p>
+            <p class="mt-1 md:mt-2">Based in Gloucestershire - Your trusted partner for exceptional building services.</p>
+        </div>
+    </footer>
+
+    <!-- Gallery Modal (single image view initially) -->
+    <div id="galleryModal" class="modal-overlay">
+        <div class="modal-content">
+            <button id="closeModalBtn" class="modal-close-btn">&times;</button>
+            <h3 class="text-xl md:text-3xl font-bold mb-4 md:mb-8" id="modalTitle">Image Details</h3>
+            <img id="enlargedImage" class="modal-enlarged-image" src="" alt="Enlarged Project Image">
+            <p id="imageDescription" class="modal-image-description"></p>
+            <!-- Hidden container for the full grid content, populated when "See More" is clicked -->
+            <div id="fullGalleryGridContainer" class="hidden"></div>
+        </div>
+    </div>
+
+    <script>
+        const allGalleryImages = [
+            { "src": "https://raw.githubusercontent.com/jedzsites/Mark-Edmond-LTD/main/IMG_3683.jpeg", "alt": "Finished Bathroom Renovation", "description": "Bathroom Renovation" },
+            { "src": "https://raw.githubusercontent.com/jedzsites/Mark-Edmond-LTD/main/IMG_3685.jpeg", "alt": "Before Kitchen/Floor Renovation", "description": "Floor Installation" },
+            { "src": "https://raw.githubusercontent.com/jedzsites/Mark-Edmond-LTD/main/IMG_3684.jpeg", "alt": "Bathroom Renovation Progress", "description": "Bathroom Shower Area" },
+            { "src": "https://raw.githubusercontent.com/jedzsites/Mark-Edmond-LTD/main/IMG_3691.jpeg", "alt": "Bathroom Corner Bath", "description": "Bathroom Remodel" },
+            { "src": "https://raw.githubusercontent.com/jedzsites/Mark-Edmond-LTD/main/IMG_3686.jpeg", "alt": "Modern Bathroom Shower", "description": "Shower Installation" },
+            { "src": "https://raw.githubusercontent.com/jedzsites/Mark-Edmond-LTD/main/IMG_3687.jpeg", "alt": "Modern Kitchen Renovation", "description": "Kitchen Remodel" },
+            { "src": "https://raw.githubusercontent.com/jedzsites/Mark-Edmond-LTD/main/IMG_3688.jpeg", "alt": "Walk-in Shower Installation", "description": "Walk-in Shower" },
+            { "src": "https://raw.githubusercontent.com/jedzsites/Mark-Edmond-LTD/main/IMG_3690.jpeg", "alt": "Bathroom Basin Area", "description": "Bathroom Fixtures" },
+            { "src": "https://raw.githubusercontent.com/jedzsites/Mark-Edmond-LTD/main/IMG_3695.jpeg", "alt": "Freestanding Bath", "description": "Freestanding Bath Installation" },
+            { "src": "https://raw.githubusercontent.com/jedzsites/Mark-Edmond-LTD/main/IMG_3693.jpeg", "alt": "Toilet and Basin Area", "description": "Powder Room Renovation" }
+        ];
+
+        // Function to create an image element with its overlay and event listener
+        function createImageElement(image, isModalGridItem = false) {
+            const imgDiv = document.createElement('div');
+            imgDiv.className = 'relative group';
+            if (isModalGridItem) {
+                imgDiv.classList.add('gallery-modal-grid-item', 'cursor-pointer');
+            }
+
+            imgDiv.innerHTML = `
+                <img src="${image.src}" alt="${image.alt}" class="gallery-image"
+                     onerror="this.onerror=null;this.src='https://placehold.co/400x240/1f1f1f/cccccc?text=Image+Loading+Error';">
+                <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg">
+                    <p class="text-white text-lg font-semibold">${image.description}</p>
+                </div>
+            `;
+            return imgDiv;
+        }
+
+        function resetModalToSingleView() {
+            const galleryModal = document.getElementById('galleryModal');
+            if (galleryModal) {
+                // Keep the structural HTML of the modal-content for single image view
+                galleryModal.querySelector('.modal-content').innerHTML = `
+                    <button id="closeModalBtn" class="modal-close-btn">&times;</button>
+                    <h3 class="text-xl md:text-3xl font-bold mb-4 md:mb-8" id="modalTitle">Image Details</h3>
+                    <img id="enlargedImage" class="modal-enlarged-image" src="" alt="Enlarged Project Image">
+                    <p id="imageDescription" class="modal-image-description"></p>
+                    <div id="fullGalleryGridContainer" class="hidden"></div>
+                `;
+                // Re-attach close listener to the new button
+                document.getElementById('closeModalBtn').addEventListener('click', function() {
+                    galleryModal.classList.remove('active');
+                    document.body.style.overflow = '';
+                });
+            }
+        }
+
+        window.onload = function() {
+            setTimeout(function() {
+                const galleryModal = document.getElementById('galleryModal');
+                const viewAllGalleryBtn = document.getElementById('viewAllGalleryBtn');
+
+                // Get initial references to elements within the modal for single image view
+                let enlargedImage = document.getElementById('enlargedImage');
+                let imageDescription = document.getElementById('imageDescription');
+                let modalTitle = document.getElementById('modalTitle');
+
+                // Get the container for the initial 6 images
+                const mainGalleryGrid = document.querySelector('#gallery .grid');
+
+                // Clear any existing static HTML images and populate the first 6 dynamically
+                if (mainGalleryGrid) {
+                    mainGalleryGrid.innerHTML = '';
+                    allGalleryImages.slice(0, 6).forEach(image => {
+                        const imgElement = createImageElement(image);
+                        imgElement.querySelector('img').addEventListener('click', function() {
+                            openImageModal(image.src, image.alt, image.description);
+                        });
+                        mainGalleryGrid.appendChild(imgElement);
+                    });
+                }
+
+                // Function to open modal with a specific image (single view)
+                function openImageModal(src, alt, description) {
+                    resetModalToSingleView(); // Ensure the modal content is reset to the single image view structure
+
+                    // Re-query elements as resetModalToSingleView re-creates them
+                    enlargedImage = document.getElementById('enlargedImage');
+                    imageDescription = document.getElementById('imageDescription');
+                    modalTitle = document.getElementById('modalTitle'); // Re-query modalTitle as well
+
+                    modalTitle.textContent = description; // Update modal title with image description
+                    enlargedImage.src = src;
+                    enlargedImage.alt = alt;
+                    imageDescription.textContent = description;
+                    galleryModal.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                }
+
+                // Event Listener for the "See More Projects" button
+                if (viewAllGalleryBtn) {
+                    viewAllGalleryBtn.addEventListener('click', function() {
+                        const fullGalleryGridContainer = document.getElementById('fullGalleryGridContainer');
+                        if (fullGalleryGridContainer) {
+                            // Hide single image view elements (which are part of the main modal-content div)
+                            enlargedImage.classList.add('hidden');
+                            imageDescription.classList.add('hidden');
+                            modalTitle.textContent = "All Projects"; // Change modal title for full view
+
+                            // Dynamically create the full gallery grid
+                            let fullGridHtml = '<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">';
+                            allGalleryImages.forEach(image => {
+                                fullGridHtml += createImageElement(image, true).outerHTML; // Use outerHTML to get the div itself
+                            });
+                            fullGridHtml += '</div>';
+
+                            fullGalleryGridContainer.innerHTML = fullGridHtml;
+                            fullGalleryGridContainer.classList.remove('hidden'); // Show the grid
+
+                            // Re-attach click listeners to the dynamically created images in the full gallery grid
+                            fullGalleryGridContainer.querySelectorAll('.gallery-modal-grid-item').forEach(item => {
+                                item.addEventListener('click', function() {
+                                    // Pass the image data to openImageModal
+                                    const src = this.querySelector('img').src; // Get src from the img inside the item
+                                    const alt = this.querySelector('img').alt; // Get alt from the img inside the item
+                                    const description = this.querySelector('p').textContent; // Get description from p tag inside the item
+                                    openImageModal(src, alt, description); // Switch back to single view
+                                });
+                            });
+                        }
+                        galleryModal.classList.add('active');
+                        document.body.style.overflow = 'hidden';
+                    });
+                }
+
+                // Close modal via 'x' button
+                const initialCloseModalBtn = document.getElementById('closeModalBtn');
+                if (initialCloseModalBtn) {
+                    initialCloseModalBtn.addEventListener('click', function() {
+                        galleryModal.classList.remove('active');
+                        document.body.style.overflow = '';
+                        resetModalToSingleView(); // Reset modal content when closed
+                    });
+                }
+
+                // Close modal if clicking outside the content (on the overlay)
+                if (galleryModal) {
+                    galleryModal.addEventListener('click', function(event) {
+                        if (event.target === galleryModal) {
+                            galleryModal.classList.remove('active');
+                            document.body.style.overflow = '';
+                            resetModalToSingleView(); // Reset modal content when closed via overlay
+                        }
+                    });
+                } else {
+                    console.error("Gallery modal element (galleryModal) not found on initial load.");
+                }
+            }, 100);
+        };
+    </script>
+</body>
+</html>
